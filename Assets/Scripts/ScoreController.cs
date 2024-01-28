@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour
 {
@@ -7,12 +8,33 @@ public class ScoreController : MonoBehaviour
 
     public int playerPoints = 0;
 
+    public int secondsLeft = 50;
+    private float currentSecond = 1;
+    
     [SerializeField]
     private TextMeshProUGUI textUI;
+    [SerializeField]
+    private TextMeshProUGUI timerUI;
 
     void Start()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        currentSecond -= Time.deltaTime;
+        if (currentSecond <= 0)
+        {
+            currentSecond += 1;
+            secondsLeft -= 1;
+            timerUI.text = "Time: " + secondsLeft.ToString();
+            if(secondsLeft < 0)
+            {
+                Debug.Log("Gameover");
+                SceneManager.LoadScene("ScoreScene");
+            }
+        }
     }
 
     public void DecrementPoints(int amnt)

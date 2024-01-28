@@ -7,6 +7,8 @@ public class Sorbet : Hittable
     SpriteRenderer spriteRenderer;
     [SerializeField]
     Sprite[] sprites;
+    [SerializeField]
+    Sprite hitSprite;
     int spriteIndex = 0;
     float spriteAnim = 0.5f;
 
@@ -32,5 +34,7 @@ public class Sorbet : Hittable
     public override void Hit()
     {
         ScoreController.instance.DecrementPoints(3);
+        spriteAnim = 1;
+        spriteRenderer.sprite = hitSprite;
     }
 }
