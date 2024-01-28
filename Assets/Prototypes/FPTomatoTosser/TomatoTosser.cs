@@ -5,6 +5,8 @@ public class TomatoTosser : MonoBehaviour
     Vector3 startingLocalPosition;
     [SerializeField]
     Vector3 offsetFullyCharged;
+    [SerializeField]
+    float offsetAngleDegrees;
 
     [SerializeField]
     private GameObject tomatoThrowablePrefab;
@@ -41,9 +43,9 @@ public class TomatoTosser : MonoBehaviour
                 if (chargedPercent <= 0)
                 {
                     chargedPercent = 0;
-                    handTomatoSceneObject.SetActive(true);
+                    //handTomatoSceneObject.SetActive(true);
                 }
-                transform.localPosition = Vector3.Lerp(startingLocalPosition, startingLocalPosition + offsetFullyCharged, chargedPercent);
+                OffsetUpdate();
             }
         }
         else
@@ -62,7 +64,7 @@ public class TomatoTosser : MonoBehaviour
     {
         chargedPercent += Time.deltaTime * chargeRate;
         if (chargedPercent > 1) chargedPercent = 1;
-        transform.localPosition = Vector3.Lerp(startingLocalPosition, startingLocalPosition + offsetFullyCharged, chargedPercent);
+        OffsetUpdate();
     }
 
     public void Release()
@@ -73,6 +75,14 @@ public class TomatoTosser : MonoBehaviour
         Rigidbody rb = newTomato.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward * Mathf.Lerp(minThrowForce, maxThrowForce, chargedPercent));
         rb.AddForce(transform.up * Mathf.Lerp(0, maxThrowLift, chargedPercent));
-        handTomatoSceneObject.SetActive(false);
+        //handTomatoSceneObject.SetActive(false);
+    }
+
+    private void OffsetUpdate()
+    {
+        transform.SetLocalPositionAndRotation(
+            Vector3.Lerp(startingLocalPosition, startingLocalPosition + offsetFullyCharged, chargedPercent),
+            Quaternion.Euler(0, 0, Mathf.Lerp(0, offsetAngleDegrees, chargedPercent))
+        );
     }
 }
