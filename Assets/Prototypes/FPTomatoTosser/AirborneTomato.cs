@@ -16,6 +16,12 @@ public class AirborneTomato : MonoBehaviour
                 ContactPoint contact = collision.GetContact(0);
                 Instantiate(splatterDecal, contact.point + Vector3.up * 0.05f, Quaternion.LookRotation(collision.impulse));
             }
+
+            Hittable hittableComp = collision.gameObject.GetComponent<Hittable>();
+            if(hittableComp != null)
+            {
+                hittableComp.Hit();
+            }
         }
     }
 }
