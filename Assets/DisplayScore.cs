@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DisplayScore : MonoBehaviour
 {
@@ -17,5 +18,15 @@ public class DisplayScore : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("GGJ2024_Club_Scene");
     }
 }
