@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 5794754588772141504}
   - component: {fileID: 3439291268037810441}
   - component: {fileID: 3335030441123675780}
+  - component: {fileID: 3335502575476767132}
   m_Layer: 0
   m_Name: Tomato
   m_TagString: Untagged
@@ -267,3 +268,16 @@ MonoBehaviour:
   splatterThreshold: 2
   splatterDecal: {fileID: 8130347141200354124, guid: cf8c4f92e3c32864bbada828731c3f1a,
     type: 3}
+--- !u!114 &3335502575476767132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540196310774121995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b439ad0eed0e8ec4995e99c0197ca5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTimer: 30
